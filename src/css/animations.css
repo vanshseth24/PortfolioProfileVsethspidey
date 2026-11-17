@@ -1,0 +1,164 @@
+/* =====================================================================
+   VANSH SETH — SPIDER-COMIC PORTFOLIO
+   animations.css  ·  keyframes, scroll reveals & comic motion
+   ===================================================================== */
+
+/* ---------- SCROLL REVEAL ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px) scale(0.98);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* stagger children inside grids */
+.origin-grid .reveal:nth-child(2),
+.missions .reveal:nth-child(2),
+.lab-grid .reveal:nth-child(2) { transition-delay: 0.09s; }
+.origin-grid .reveal:nth-child(3),
+.missions .reveal:nth-child(3),
+.lab-grid .reveal:nth-child(3) { transition-delay: 0.18s; }
+.origin-grid .reveal:nth-child(4),
+.missions .reveal:nth-child(4),
+.lab-grid .reveal:nth-child(4) { transition-delay: 0.27s; }
+.missions .reveal:nth-child(5) { transition-delay: 0.36s; }
+.missions .reveal:nth-child(6) { transition-delay: 0.45s; }
+.timeline .tl:nth-child(2) { transition-delay: 0.08s; }
+.timeline .tl:nth-child(3) { transition-delay: 0.16s; }
+.timeline .tl:nth-child(4) { transition-delay: 0.24s; }
+
+/* ---------- KEYFRAMES ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin-slow { animation: spin 3.2s linear infinite; }
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(20, 164, 77, 0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(20, 164, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(20, 164, 77, 0); }
+}
+
+@keyframes pingPulse {
+  0% { transform: scale(0.85); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes tickerRun {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker__track { animation: tickerRun 26s linear infinite; }
+.ticker:hover .ticker__track { animation-play-state: paused; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--rot, 0deg)); }
+}
+.chip--1 { --rot: 4deg; animation: floaty 5s ease-in-out infinite; }
+.chip--2 { --rot: -5deg; animation: floaty 6.2s ease-in-out infinite 0.4s; }
+.chip--3 { --rot: 2deg; animation: floaty 5.6s ease-in-out infinite 0.8s; }
+
+@keyframes stickerPop {
+  0%, 100% { transform: rotate(var(--srot)) scale(1); }
+  45% { transform: rotate(var(--srot)) scale(1.12); }
+}
+.sticker--thwip { --srot: -14deg; animation: stickerPop 2.6s ease-in-out infinite; }
+.sticker--pow { --srot: 10deg; animation: stickerPop 2.6s ease-in-out infinite 1.3s; }
+
+@keyframes bob {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.9; }
+  50% { transform: translate(-50%, 10px); opacity: 0.55; }
+}
+.scroll-cue { animation: bob 2.2s ease-in-out infinite; }
+
+@keyframes maskBreathe {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(-2deg) translateY(-10px); }
+}
+.mask-panel { animation: maskBreathe 6s ease-in-out infinite; }
+@media (max-width: 520px) {
+  @keyframes maskBreathe {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+}
+
+@keyframes eyeGlow {
+  0%, 92%, 100% { opacity: 1; }
+  95% { opacity: 0.25; }
+}
+.mask-eyes .eye { animation: eyeGlow 7s ease-in-out infinite; }
+
+@keyframes webBlast {
+  0% { opacity: 0; transform: scale(0.2) rotate(-12deg); }
+  35% { opacity: 1; transform: scale(1.08) rotate(3deg); }
+  70% { opacity: 1; transform: scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+
+/* glitch-ish comic offset on titles when they enter view */
+@keyframes titleSlam {
+  0% { transform: scale(1.35) translateY(-14px); opacity: 0; letter-spacing: 12px; }
+  60% { transform: scale(0.97) translateY(4px); opacity: 1; letter-spacing: 1px; }
+  100% { transform: none; opacity: 1; }
+}
+.section-title.is-in { animation: titleSlam 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.1) both; }
+
+/* hero title entrance */
+@keyframes slamIn {
+  0% { transform: translateX(-70px) skewX(14deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+.hero__title-line { animation: slamIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero__title-line--alt { animation-delay: 0.16s; }
+
+@keyframes fadeInUpHero {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+.badge-strip { animation: fadeInUpHero 0.6s 0.1s ease both; }
+.narration { animation: fadeInUpHero 0.6s 0.2s ease both; }
+.hero__typed { animation: fadeInUpHero 0.6s 0.45s ease both; }
+.hero__lead { animation: fadeInUpHero 0.6s 0.55s ease both; }
+.hero__actions { animation: fadeInUpHero 0.6s 0.65s ease both; }
+.hero__stats { animation: fadeInUpHero 0.6s 0.75s ease both; }
+.hero__art { animation: fadeInUpHero 0.9s 0.35s ease both; }
+
+/* caret blink */
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.caret { animation: blink 0.8s step-end infinite; }
+
+/* shake on invalid form field */
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-7px); }
+  40%, 60% { transform: translateX(7px); }
+}
+.is-shaking { animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+
+/* floating "sound effect" words spawned by JS */
+.fx-word {
+  position: fixed;
+  z-index: 9400;
+  pointer-events: none;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  letter-spacing: 2px;
+  color: var(--yellow);
+  text-shadow: 3px 3px 0 var(--ink), 6px 6px 0 var(--red);
+  animation: fxFloat 0.85s ease-out forwards;
+}
+@keyframes fxFloat {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(0.4) rotate(-10deg); }
+  25% { opacity: 1; transform: translate(-50%, -18px) scale(1.15) rotate(5deg); }
+  100% { opacity: 0; transform: translate(-50%, -80px) scale(0.9) rotate(-4deg); }
+}

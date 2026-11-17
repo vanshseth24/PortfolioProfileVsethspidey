@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vansh Seth — BCA student, AI explorer & web slinger. Comic-book style portfolio featuring AI projects, research and cool web builds." />
+    <meta name="author" content="Vansh Seth" />
+    <title>Vansh Seth | AI &amp; Web Slinger — Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/animations.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e23636'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='%23fff' font-family='Impact'%3EV%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+
+  <body>
+    <!-- ============ PRELOADER ============ -->
+    <div class="preloader" id="preloader">
+      <div class="preloader__inner">
+        <svg class="spider-mark spin-slow" viewBox="0 0 100 100" aria-hidden="true">
+          <use href="#spiderGlyph" />
+        </svg>
+        <p class="preloader__text">THWIP<span>...</span></p>
+        <div class="preloader__bar"><span id="preloadBar"></span></div>
+      </div>
+    </div>
+
+    <!-- ============ HIDDEN SVG SPRITE ============ -->
+    <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+      <symbol id="spiderGlyph" viewBox="0 0 100 100">
+        <g fill="currentColor">
+          <ellipse cx="50" cy="50" rx="9" ry="15" />
+          <circle cx="50" cy="33" r="6.5" />
+          <path d="M43 40 L20 22 L8 28 M43 46 L14 42 L4 50 M43 55 L16 62 L8 74 M45 62 L28 78 L26 92" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+          <path d="M57 40 L80 22 L92 28 M57 46 L86 42 L96 50 M57 55 L84 62 L92 74 M55 62 L72 78 L74 92" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" />
+        </g>
+      </symbol>
+    </svg>
+
+    <!-- ============ FX LAYERS ============ -->
+    <canvas id="webCanvas" class="web-canvas" aria-hidden="true"></canvas>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="scroll-web" aria-hidden="true"><span id="scrollWeb"></span></div>
+
+    <!-- ============ NAVBAR ============ -->
+    <header class="nav" id="nav">
+      <a href="#home" class="nav__logo" id="logoBtn" aria-label="Vansh Seth home">
+        <svg class="spider-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#spiderGlyph" /></svg>
+        <span class="nav__logo-text">VANSH<em>SETH</em></span>
+      </a>
+
+      <nav class="nav__links" id="navLinks">
+        <a href="#home" class="nav__link is-active">Home</a>
+        <a href="#origin" class="nav__link">Origin</a>
+        <a href="#powers" class="nav__link">Powers</a>
+        <a href="#missions" class="nav__link">Missions</a>
+        <a href="#lab" class="nav__link">AI Lab</a>
+        <a href="#journey" class="nav__link">Journey</a>
+        <a href="#contact" class="nav__link nav__link--cta">Hire Me</a>
+      </nav>
+
+      <button class="nav__burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="home">
+        <div class="hero__halftone" aria-hidden="true"></div>
+        <div class="hero__rays" aria-hidden="true"></div>
+
+        <svg class="skyline" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            d="M0,260 L0,150 L40,150 L40,110 L90,110 L90,170 L140,170 L140,80 L175,80 L175,40 L200,40 L200,80 L235,80 L235,160 L290,160 L290,120 L330,120 L330,60 L360,60 L360,120 L410,120 L410,180 L455,180 L455,100 L500,100 L500,140 L545,140 L545,70 L570,70 L570,20 L595,20 L595,70 L625,70 L625,150 L670,150 L670,110 L720,110 L720,165 L765,165 L765,90 L800,90 L800,50 L825,50 L825,90 L865,90 L865,150 L910,150 L910,120 L955,120 L955,175 L1000,175 L1000,95 L1045,95 L1045,135 L1085,135 L1085,60 L1115,60 L1115,25 L1140,25 L1140,60 L1170,60 L1170,140 L1215,140 L1215,105 L1260,105 L1260,165 L1305,165 L1305,85 L1350,85 L1350,130 L1395,130 L1395,155 L1440,155 L1440,260 Z"
+            fill="currentColor"
+          />
+        </svg>
+
+        <div class="hero__grid container">
+          <div class="hero__copy">
+            <div class="badge-strip">
+              <span class="badge badge--red">BCA STUDENT</span>
+              <span class="badge badge--blue">AI EXPLORER</span>
+              <span class="badge badge--yellow">WEB SLINGER</span>
+            </div>
+
+            <p class="narration">Chunar&nbsp;·&nbsp;Night falls over the city. A laptop screen glows...</p>
+
+            <h1 class="hero__title">
+              <span class="hero__title-line" data-text="VANSH">VANSH</span>
+              <span class="hero__title-line hero__title-line--alt" data-text="SETH">SETH</span>
+            </h1>
+
+            <div class="hero__typed">
+              <span class="hero__typed-prefix">I build</span>
+              <span class="typed" id="typed"></span><span class="caret">|</span>
+            </div>
+
+            <p class="hero__lead">
+              A BCA student with a <strong>spider-sense for AI</strong>. I train models, break down
+              trending research papers, and swing them into <strong>seriously cool websites</strong>
+              — one thwip at a time.
+            </p>
+
+            <div class="hero__actions">
+              <a href="#missions" class="btn btn--red">SEE MY MISSIONS</a>
+              <a href="#contact" class="btn btn--ghost">SEND A SIGNAL</a>
+              <button type="button" class="btn btn--yellow" id="resumeBtn">GRAB RESUME</button>
+            </div>
+
+            <ul class="hero__stats">
+              <li><b data-count="3">0</b><span>Projects</span></li>
+              <li><b data-count="10">0</b><span>AI Papers Read</span></li>
+              <li><b data-count="5">0</b><span>AI Researchs</span></li>
+              <li><b data-count="99">0</b><span>% Caffeine</span></li>
+            </ul>
+          </div>
+
+          <div class="hero__art">
+            <div class="mask-panel tilt" data-tilt>
+              <span class="sticker sticker--thwip">THWIP!</span>
+              <span class="sticker sticker--pow">AI!</span>
+
+              <svg class="mask-svg" viewBox="0 0 400 470" role="img" aria-label="Comic style spider mask illustration">
+                <defs>
+                  <clipPath id="faceClip">
+                    <path d="M200 18 C304 18 364 104 364 204 C364 340 282 452 200 452 C118 452 36 340 36 204 C36 104 96 18 200 18 Z" />
+                  </clipPath>
+                  <linearGradient id="faceGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f04b4b" />
+                    <stop offset="55%" stop-color="#d32222" />
+                    <stop offset="100%" stop-color="#8f1414" />
+                  </linearGradient>
+                  <linearGradient id="eyeGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="70%" stop-color="#d9e7ff" />
+                    <stop offset="100%" stop-color="#9fc0ff" />
+                  </linearGradient>
+                </defs>
+
+                <path class="mask-shadow" d="M200 30 C304 30 372 112 372 212 C372 348 288 462 204 462 C120 462 44 348 44 212 C44 112 96 30 200 30 Z" />
+                <path class="mask-face" d="M200 18 C304 18 364 104 364 204 C364 340 282 452 200 452 C118 452 36 340 36 204 C36 104 96 18 200 18 Z" fill="url(#faceGrad)" />
+
+                <g clip-path="url(#faceClip)" class="mask-web">
+                  <g class="mask-web__rings">
+                    <ellipse cx="200" cy="230" rx="52" ry="58" />
+                    <ellipse cx="200" cy="230" rx="104" ry="116" />
+                    <ellipse cx="200" cy="230" rx="156" ry="174" />
+                    <ellipse cx="200" cy="230" rx="208" ry="232" />
+                    <ellipse cx="200" cy="230" rx="260" ry="290" />
+                  </g>
+                  <g class="mask-web__spokes">
+                    <path d="M200 230 L620 230 M200 230 L564 440 M200 230 L410 594 M200 230 L200 650 M200 230 L-10 594 M200 230 L-164 440 M200 230 L-220 230 M200 230 L-164 20 M200 230 L-10 -134 M200 230 L200 -190 M200 230 L410 -134 M200 230 L564 20" />
+                  </g>
+                </g>
+
+                <g class="mask-eyes">
+                  <ellipse class="eye" cx="122" cy="214" rx="68" ry="46" transform="rotate(-15 122 214)" fill="url(#eyeGrad)" />
+                  <ellipse class="eye" cx="278" cy="214" rx="68" ry="46" transform="rotate(15 278 214)" fill="url(#eyeGrad)" />
+                  <ellipse class="eye-glint" cx="98" cy="198" rx="19" ry="10" transform="rotate(-15 98 198)" />
+                  <ellipse class="eye-glint" cx="254" cy="198" rx="19" ry="10" transform="rotate(15 254 198)" />
+                </g>
+
+                <path class="mask-face-outline" d="M200 18 C304 18 364 104 364 204 C364 340 282 452 200 452 C118 452 36 340 36 204 C36 104 96 18 200 18 Z" />
+              </svg>
+
+              <div class="mask-panel__caption">"With great code comes great responsibility."</div>
+            </div>
+
+            <div class="floating-chip chip--1">🕸️ React &amp; Tailwind</div>
+            <div class="floating-chip chip--2">🧠 LLMs &amp; RAG</div>
+            <div class="floating-chip chip--3">⚡ Python · TensorFlow</div>
+          </div>
+        </div>
+
+        <a href="#origin" class="scroll-cue" aria-label="Scroll down">
+          <span></span>SCROLL
+        </a>
+      </section>
+
+      <!-- ============ NEWS TICKER ============ -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track" id="tickerTrack">
+          <span>★ DAILY BUGLE: LOCAL BCA STUDENT TRAINS NEURAL NET OVERNIGHT ★</span>
+          <span>★ "WHO IS THIS MASKED DEVELOPER?" ASKS J. JONAH JAMESON ★</span>
+          <span>★ TRENDING: AGENTIC AI · MULTIMODAL LLMS · RETRIEVAL AUGMENTED GENERATION ★</span>
+          <span>★ WEBSITES SHIPPED FASTER THAN A SPIDER-SENSE TINGLE ★</span>
+        </div>
+      </div>
+
+      <!-- ============ ORIGIN / ABOUT ============ -->
+      <section class="section section--paper" id="origin">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="kicker">Issue #01</span>
+            <h2 class="section-title" data-text="THE ORIGIN STORY">THE ORIGIN STORY</h2>
+            <p class="section-sub">How a curious BCA kid got bitten by the AI bug.</p>
+          </header>
+
+          <div class="origin-grid">
+            <article class="panel reveal" data-tilt>
+              <div class="panel__num">01</div>
+              <div class="panel__icon">🎓</div>
+              <h3>The Bite</h3>
+              <p>
+                Started BCA to learn "computers". Wrote my first Python script, watched it predict
+                something correctly, and the spider-sense never switched off again.
+              </p>
+            </article>
+
+            <article class="panel reveal" data-tilt>
+              <div class="panel__num">02</div>
+              <div class="panel__icon">🧠</div>
+              <h3>The Powers</h3>
+              <p>
+                Machine learning, deep learning and generative AI. From training classifiers to
+                wiring up LLM agents with RAG pipelines and vector databases.
+              </p>
+            </article>
+
+            <article class="panel reveal" data-tilt>
+              <div class="panel__num">03</div>
+              <div class="panel__icon">🕸️</div>
+              <h3>The Web</h3>
+              <p>
+                I love making websites that feel <em>alive</em> — bold layouts, buttery animations
+                and interfaces people actually want to click around in.
+              </p>
+            </article>
+
+            <article class="panel reveal" data-tilt>
+              <div class="panel__num">04</div>
+              <div class="panel__icon">🔬</div>
+              <h3>The Mission</h3>
+              <p>
+                Track what's trending in AI every single week, break the research down into plain
+                English, and ship it as something you can actually use.
+              </p>
+            </article>
+          </div>
+
+          <div class="speech-row reveal">
+            <div class="speech-bubble">
+              <p>
+                <strong>Quick intro:</strong> I'm Vansh Seth — a BCA student who spends the day on
+                lectures, the evening on AI experiments and the night making the internet look
+                cooler. I'm currently obsessed with agentic workflows, open-source LLMs and building
+                interfaces that behave like comic panels.
+              </p>
+            </div>
+            <div class="id-card" data-tilt>
+              <div class="id-card__top">SPIDER-FILE</div>
+              <ul>
+                <li><b>NAME</b><span>Vansh Seth</span></li>
+                <li><b>ALIAS</b><span>The Web Slinger</span></li>
+                <li><b>CLASS</b><span>BCA Student</span></li>
+                <li><b>BASE</b><span>India 🇮🇳</span></li>
+                <li><b>POWERS</b><span>AI · Web · Research</span></li>
+                <li><b>STATUS</b><span class="status-live">Open to work</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ POWERS / SKILLS ============ -->
+      <section class="section section--dark" id="powers">
+        <div class="halftone-layer" aria-hidden="true"></div>
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="kicker kicker--light">Issue #02</span>
+            <h2 class="section-title section-title--light" data-text="SUPER POWERS">SUPER POWERS</h2>
+            <p class="section-sub section-sub--light">Spider-sense levels across the stack.</p>
+          </header>
+
+          <div class="tabs reveal" id="skillTabs">
+            <button class="tab is-active" data-tab="ai">AI / ML</button>
+            <button class="tab" data-tab="web">WEB DEV</button>
+            <button class="tab" data-tab="tools">LANGUAGES &amp; TOOLS</button>
+          </div>
+
+          <div class="skills" id="skillPanels">
+            <div class="skills__panel is-active" data-panel="ai">
+              <div class="skill" data-level="90"><span class="skill__name">Machine Learning</span><span class="skill__val">90%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="85"><span class="skill__name">Deep Learning / Neural Nets</span><span class="skill__val">85%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="88"><span class="skill__name">Generative AI &amp; LLMs</span><span class="skill__val">88%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="80"><span class="skill__name">RAG &amp; Vector Databases</span><span class="skill__val">80%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="76"><span class="skill__name">Computer Vision</span><span class="skill__val">76%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="82"><span class="skill__name">Prompt &amp; Agent Engineering</span><span class="skill__val">82%</span><div class="skill__bar"><i></i></div></div>
+            </div>
+
+            <div class="skills__panel" data-panel="web">
+              <div class="skill" data-level="92"><span class="skill__name">HTML5 &amp; Semantic Markup</span><span class="skill__val">92%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="90"><span class="skill__name">CSS3 / Animations</span><span class="skill__val">90%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="87"><span class="skill__name">JavaScript (ES6+)</span><span class="skill__val">87%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="78"><span class="skill__name">React &amp; Tailwind</span><span class="skill__val">78%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="72"><span class="skill__name">Node &amp; REST APIs</span><span class="skill__val">72%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="84"><span class="skill__name">UI / UX &amp; Motion Design</span><span class="skill__val">84%</span><div class="skill__bar"><i></i></div></div>
+            </div>
+
+            <div class="skills__panel" data-panel="tools">
+              <div class="skill" data-level="89"><span class="skill__name">Python</span><span class="skill__val">89%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="74"><span class="skill__name">C / C++ &amp; Java (BCA core)</span><span class="skill__val">74%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="80"><span class="skill__name">SQL &amp; MongoDB</span><span class="skill__val">80%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="83"><span class="skill__name">Git &amp; GitHub</span><span class="skill__val">83%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="79"><span class="skill__name">Pandas · NumPy · Scikit-learn</span><span class="skill__val">79%</span><div class="skill__bar"><i></i></div></div>
+              <div class="skill" data-level="70"><span class="skill__name">Docker &amp; Deployment</span><span class="skill__val">70%</span><div class="skill__bar"><i></i></div></div>
+            </div>
+          </div>
+
+          <div class="gadget-belt reveal">
+            <span>TensorFlow</span><span>PyTorch</span><span>Hugging Face</span><span>LangChain</span>
+            <span>OpenAI API</span><span>Streamlit</span><span>Flask</span><span>Figma</span>
+            <span>Vite</span><span>Pinecone</span><span>Colab</span><span>VS Code</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MISSIONS / PROJECTS ============ -->
+      <section class="section section--paper" id="missions">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="kicker">Issue #03</span>
+            <h2 class="section-title" data-text="MISSION FILES">MISSION FILES</h2>
+            <p class="section-sub">Projects where AI meets the web. Hover a panel to trigger spider-sense.</p>
+          </header>
+
+          <div class="filters reveal" id="filters">
+            <button class="chip-btn is-active" data-filter="all">ALL</button>
+            <button class="chip-btn" data-filter="ai">AI</button>
+            <button class="chip-btn" data-filter="web">WEB</button>
+            <button class="chip-btn" data-filter="research">RESEARCH</button>
+          </div>
+
+          <div class="missions" id="missionGrid">
+            <article class="mission reveal" data-cat="ai web" data-tilt>
+              <div class="mission__cover cover--a">
+                <span class="mission__emoji">🤖</span>
+                <span class="mission__tagline">LLM · RAG</span>
+              </div>
+              <div class="mission__body">
+                <h3>SpiderSense Chatbot</h3>
+                <p>A retrieval-augmented assistant that reads your PDFs and answers with citations. Built with LangChain, a vector store and a comic-styled chat UI.</p>
+                <div class="tags"><span>Python</span><span>LangChain</span><span>Streamlit</span></div>
+                <div class="mission__links"><a href="#contact" class="link-thwip">Case File →</a><a href="#contact" class="link-thwip">Code →</a></div>
+              </div>
+              <span class="spidey-sense" aria-hidden="true"></span>
+            </article>
+
+            <article class="mission reveal" data-cat="ai" data-tilt>
+              <div class="mission__cover cover--b">
+                <span class="mission__emoji">👁️</span>
+                <span class="mission__tagline">VISION</span>
+              </div>
+              <div class="mission__body">
+                <h3>Web-Shooter Vision</h3>
+                <p>Real-time object &amp; gesture detection in the browser. A CNN trained in TensorFlow, exported to TF.js so it runs fully client-side at 30fps.</p>
+                <div class="tags"><span>TensorFlow</span><span>OpenCV</span><span>TF.js</span></div>
+                <div class="mission__links"><a href="#contact" class="link-thwip">Case File →</a><a href="#contact" class="link-thwip">Demo →</a></div>
+              </div>
+              <span class="spidey-sense" aria-hidden="true"></span>
+            </article>
+
+            <article class="mission reveal" data-cat="web" data-tilt>
+              <div class="mission__cover cover--c">
+                <span class="mission__emoji">🎨</span>
+                <span class="mission__tagline">CREATIVE WEB</span>
+              </div>
+              <div class="mission__body">
+                <h3>Multiverse Portfolio Kit</h3>
+                <p>An open-source pack of comic-book UI components — halftone panels, speech bubbles, sticker buttons — pure HTML, CSS and vanilla JS.</p>
+                <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                <div class="mission__links"><a href="#contact" class="link-thwip">Case File →</a><a href="#contact" class="link-thwip">Code →</a></div>
+              </div>
+              <span class="spidey-sense" aria-hidden="true"></span>
+            </article>
+
+            <article class="mission reveal" data-cat="ai research" data-tilt>
+              <div class="mission__cover cover--d">
+                <span class="mission__emoji">📈</span>
+                <span class="mission__tagline">RESEARCH</span>
+              </div>
+              <div class="mission__body">
+                <h3>AI Trend Radar</h3>
+                <p>Scrapes arXiv + Hacker News daily, clusters papers by topic with embeddings, and publishes a weekly "what's hot in AI" digest.</p>
+                <div class="tags"><span>Embeddings</span><span>NLP</span><span>Flask</span></div>
+                <div class="mission__links"><a href="#lab" class="link-thwip">Read Digest →</a><a href="#contact" class="link-thwip">Code →</a></div>
+              </div>
+              <span class="spidey-sense" aria-hidden="true"></span>
+            </article>
+
+            <article class="mission reveal" data-cat="ai web" data-tilt>
+              <div class="mission__cover cover--e">
+                <span class="mission__emoji">🎧</span>
+                <span class="mission__tagline">GEN AI</span>
+              </div>
+              <div class="mission__body">
+                <h3>Bugle Voice Notes</h3>
+                <p>Upload a lecture, get a summary, flashcards and a podcast-style audio recap. Whisper for transcription, an LLM for the notes.</p>
+                <div class="tags"><span>Whisper</span><span>OpenAI</span><span>React</span></div>
+                <div class="mission__links"><a href="#contact" class="link-thwip">Case File →</a><a href="#contact" class="link-thwip">Demo →</a></div>
+              </div>
+              <span class="spidey-sense" aria-hidden="true"></span>
+            </article>
+
+            <article class="mission reveal" data-cat="web research" data-tilt>
+              <div class="mission__cover cover--f">
+                <span class="mission__emoji">🕸️</span>
+                <span class="mission__tagline">DATA VIZ</span>
+              </div>
+              <div class="mission__body">
+                <h3>Neural Web Explorer</h3>
+                <p>An interactive canvas that visualises how a neural network learns — drag the data, watch the decision boundary rebuild live.</p>
+                <div class="tags"><span>Canvas API</span><span>JS</span><span>Math</span></div>
+                <div class="mission__links"><a href="#contact" class="link-thwip">Case File →</a><a href="#contact" class="link-thwip">Demo →</a></div>
+              </div>
+              <span class="spidey-sense" aria-hidden="true"></span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ AI LAB / RESEARCH ============ -->
+      <section class="section section--blue" id="lab">
+        <div class="halftone-layer halftone-layer--red" aria-hidden="true"></div>
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="kicker kicker--light">Issue #04</span>
+            <h2 class="section-title section-title--light" data-text="THE AI LAB">THE AI LAB</h2>
+            <p class="section-sub section-sub--light">What I'm researching &amp; reading right now.</p>
+          </header>
+
+          <div class="lab-grid">
+            <article class="news reveal">
+              <div class="news__head"><span>HOT</span><time>This week</time></div>
+              <h3>Agentic AI: from chatbots to co-workers</h3>
+              <p>Studying how planning loops, tool calling and memory turn a plain LLM into an agent that can finish multi-step tasks on its own.</p>
+              <div class="news__foot">Autonomy · Tool Use · Planning</div>
+            </article>
+
+            <article class="news reveal">
+              <div class="news__head"><span>DEEP DIVE</span><time>Ongoing</time></div>
+              <h3>Small language models on cheap hardware</h3>
+              <p>Quantisation, LoRA fine-tuning and distillation — squeezing genuinely useful models onto a student laptop with 8GB of RAM.</p>
+              <div class="news__foot">LoRA · Quantisation · Edge AI</div>
+            </article>
+
+            <article class="news reveal">
+              <div class="news__head"><span>BUILDING</span><time>Now</time></div>
+              <h3>RAG that actually retrieves the right thing</h3>
+              <p>Chunking strategies, hybrid search and re-ranking. Testing which combination stops a model from confidently making things up.</p>
+              <div class="news__foot">Embeddings · Hybrid Search</div>
+            </article>
+
+            <article class="news reveal">
+              <div class="news__head"><span>WATCHING</span><time>2026</time></div>
+              <h3>Multimodal models &amp; the creative web</h3>
+              <p>Text, image, audio and video in one model — and what that means for how we design interfaces that respond to all of them.</p>
+              <div class="news__foot">Vision · Audio · UX</div>
+            </article>
+          </div>
+
+          <div class="quote-strip reveal">
+            <p>“Everybody gets one shot at a great idea. I write mine down, then build it before the tab closes.”</p>
+            <span>— Vansh Seth</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ JOURNEY / TIMELINE ============ -->
+      <section class="section section--paper" id="journey">
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="kicker">Issue #05</span>
+            <h2 class="section-title" data-text="THE JOURNEY">THE JOURNEY</h2>
+            <p class="section-sub">Panel by panel, frame by frame.</p>
+          </header>
+
+          <ol class="timeline">
+            <li class="tl reveal">
+              <div class="tl__dot"></div>
+              <div class="tl__card" data-tilt>
+                <span class="tl__year">YEAR 1</span>
+                <h3>Hello, World</h3>
+                <p>Started BCA. Fell for programming logic, built my first static websites and got dangerously comfortable with the terminal.</p>
+              </div>
+            </li>
+            <li class="tl reveal">
+              <div class="tl__dot"></div>
+              <div class="tl__card" data-tilt>
+                <span class="tl__year">YEAR 2</span>
+                <h3>Bitten by AI</h3>
+                <p>Machine learning courses, Kaggle notebooks and my first neural network. Started reading papers instead of scrolling reels (mostly).</p>
+              </div>
+            </li>
+            <li class="tl reveal">
+              <div class="tl__dot"></div>
+              <div class="tl__card" data-tilt>
+                <span class="tl__year">YEAR 3</span>
+                <h3>Shipping Season</h3>
+                <p>Hackathons, LLM side-projects and freelance websites. Learned that a great UI is what makes good AI feel like magic.</p>
+              </div>
+            </li>
+            <li class="tl reveal">
+              <div class="tl__dot"></div>
+              <div class="tl__card" data-tilt>
+                <span class="tl__year">NEXT</span>
+                <h3>The Big Leap</h3>
+                <p>Looking for an AI / full-stack internship where I can research trends, prototype fast and make the results look incredible.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="section section--dark section--contact" id="contact">
+        <div class="halftone-layer" aria-hidden="true"></div>
+        <div class="container">
+          <header class="section-head reveal">
+            <span class="kicker kicker--light">Issue #06</span>
+            <h2 class="section-title section-title--light" data-text="SEND A SIGNAL">SEND A SIGNAL</h2>
+            <p class="section-sub section-sub--light">Got a project, an internship or a wild AI idea? Thwip it over.</p>
+          </header>
+
+          <div class="contact-grid">
+            <form class="contact-form reveal" id="contactForm" novalidate>
+              <label>
+                <span>Your Name</span>
+                <input type="text" name="name" id="cName" placeholder="Peter Parker" required />
+                <em class="err" data-for="cName"></em>
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" id="cEmail" placeholder="you@dailybugle.com" required />
+                <em class="err" data-for="cEmail"></em>
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea name="message" id="cMsg" rows="5" placeholder="Let's build something heroic..." required></textarea>
+                <em class="err" data-for="cMsg"></em>
+              </label>
+              <button type="submit" class="btn btn--red btn--full" id="sendBtn">THWIP IT!</button>
+              <p class="form-note" id="formNote" role="status"></p>
+            </form>
+
+            <aside class="contact-side reveal">
+              <div class="contact-card" data-tilt>
+                <h3>Direct Line</h3>
+                <a href="mailto:vanshseth4education@gmail.com" class="contact-row"><b>✉️</b> vanshseth4education@gmail.com</a>
+                <a href="#" class="contact-row"><b>🐙</b> github.com/vanshseth.24</a>
+                <a href="#" class="contact-row"><b>💼</b> linkedin.com/in/vanshseth24</a>
+                <a href="#" class="contact-row"><b>🐦</b> @vanshseth.22</a>
+              </div>
+
+              <div class="availability" data-tilt>
+                <div class="pulse-dot"></div>
+                <div>
+                  <strong>Available for internships</strong>
+                  <span>AI · Frontend · Research assistance</span>
+                </div>
+              </div>
+
+              <button class="btn btn--yellow btn--full" id="webShotBtn" type="button">FIRE A WEB 🕸️</button>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <svg class="spider-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#spiderGlyph" /></svg>
+          <div>
+            <strong>VANSH SETH</strong>
+            <span>BCA Student · AI Explorer · Web Slinger</span>
+          </div>
+        </div>
+        <nav class="footer__links">
+          <a href="#home">Home</a><a href="#origin">Origin</a><a href="#powers">Powers</a>
+          <a href="#missions">Missions</a><a href="#lab">AI Lab</a><a href="#contact">Contact</a>
+        </nav>
+        <p class="footer__copy">© <span id="year"></span> Vansh Seth — hand-coded with HTML, CSS &amp; JavaScript. No radioactive spiders were harmed.</p>
+      </div>
+    </footer>
+
+    <button class="to-top" id="toTop" aria-label="Back to top">▲</button>
+
+    <!-- ============ WEB SHOT OVERLAY (easter egg) ============ -->
+    <div class="webshot" id="webshot" aria-hidden="true">
+      <div class="webshot__burst">THWIP!</div>
+    </div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
